@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 // ReSharper disable once CheckNamespace
 public class InputPlayer : MonoBehaviour
@@ -39,13 +39,13 @@ public class InputPlayer : MonoBehaviour
         isGrounded = isGroundedDef();
     }
 
-    public void Jump(InputAction.CallbackContext context)
+   /* public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingForce);
         }
-    }
+    }*/
 
     private bool isGroundedDef()
     {
@@ -61,10 +61,10 @@ public class InputPlayer : MonoBehaviour
         transform1.localScale = localScale;
     }
     
-    public void Move(InputAction.CallbackContext context)
+    /*public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
-    }
+    }*/
     
     
 }

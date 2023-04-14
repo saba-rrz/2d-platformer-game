@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public CharacterDatabase characterDB;
+    public SpriteRenderer artworkSprite;
+    private int selectedOption = 0;
     public float horizantal;
     private float Speed = 8f;
     private bool isFacingTheRightWay = true;
@@ -12,6 +15,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+
+     void Start()
+    {
+        if (!PlayerPrefs.HasKey("SelectedOption"))
+        {
+            selectedOption = 0;
+        }
+        else
+        {
+            Load();
+        }
+        UpdateCharacter(selectedOption);
+    }
 
     // Update is called once per frame
     void Update()
@@ -33,5 +50,17 @@ public class PlayerMovement : MonoBehaviour
             localScale.x *=  -1f;
             transform.localScale = localScale;
         }
+    }
+    private void UpdateCharacter(int selectedOption)
+    {
+        CHARACTER charatcer =
+        characterDB.GetCHARACTER(selectedOption);
+        artworkSprite.sprite = charatcer.characterSprite;
+
+
+    }
+    private void Load()
+    {
+        selectedOption = PlayerPrefs.GetInt("SelectedOption");
     }
 }
